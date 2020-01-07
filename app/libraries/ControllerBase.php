@@ -18,6 +18,9 @@ class ControllerBase {
         return new $model();
     }
 
+    protected function setActionTitle(string $title){
+        $GLOBALS[__GLOB__CONTROLLER_ACTION_TITLE__] = $title;
+    }
     // Load View
     public function view($model = [], $view = '') {
         // $model : will available in any view
