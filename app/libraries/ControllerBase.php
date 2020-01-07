@@ -22,7 +22,7 @@ class ControllerBase {
         $GLOBALS[__GLOB__CONTROLLER_ACTION_TITLE__] = $title;
     }
     // Load View
-    public function view($model = [], $view = '') {
+    public function view(object $model = null, $view = '') {
         // $model : will available in any view
         if ($view === ''){
             // get view with the same name as method called this method from a child class
@@ -46,8 +46,12 @@ class ControllerBase {
         }
     }
 
-    private function render_php($path, array $model){
+    private function render_php($path, object $model){
         // passing array $model :  will make model available in this context
+        // Also because of Intellisense problems , we will save the model in the globals
+        // $model will still available
+
+        $GLOBALS[__GLOB__MODEL__] = $model;
         ob_start();
         include($path);
         return ob_get_clean(); // = ob_get_contents() & ob_end_clean()
