@@ -35,7 +35,7 @@ class ControllerBase {
         $view = '../app/views/' . static::class . '/' . $view . '.php';
         if (file_exists($view)){
             $GLOBALS['__BODY__'] = $this->render_php($view, $model);
-            include_once '../app/views/_layout.php';
+            include_once '../app/views/' . __LAYOUT__;
         } else {
             die('View [' .$view . '] does not exist');
         }
