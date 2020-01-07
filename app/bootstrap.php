@@ -20,3 +20,4 @@ spl_autoload_register(static function($className){
 // for example layout helpers will used always so we need it
 
 include '../app/helpers/layoutHelpers.php';
+include '../app/helpers/modelHelpers.php';
