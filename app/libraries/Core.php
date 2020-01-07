@@ -16,7 +16,6 @@ class Core{
     public function __construct()
     {
         $urlArray = $this->getUrl();
-        print_r($urlArray);
 
         // Load controller , The first value of the $urlArray
         // -> due to .htaccess rules , current location is ./public/index.php .

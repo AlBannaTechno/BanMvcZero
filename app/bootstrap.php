@@ -3,7 +3,6 @@
 // Loading Config
 require_once 'config/config.php';
 
-echo APP_ROOT;
 // Loading Libraries
 //require_once 'libraries/Core.php';
 //require_once 'libraries/ControllerBase.php';
