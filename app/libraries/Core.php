@@ -15,7 +15,41 @@ class Core{
 
     public function __construct()
     {
-        print_r($this->getUrl());
+        $urlArray = $this->getUrl();
+        print_r($urlArray);
+
+        // Load controller , The first value of the $urlArray
+        // -> due to .htaccess rules , current location is ./public/index.php .
+        if (isset($urlArray[0]) ) {
+            // every controller must start with UpperCase Letter
+            $controller = ucwords($urlArray[0]);
+            if (
+            file_exists('../app/controllers/' . $controller . '.php')) {
+                $this->currentController = $controller;
+                // free location
+                unset($urlArray[0]);
+            }
+
+            require_once '../app/controllers/'. $this->currentController . '.php';
+            $this->currentController = new $this->currentController;
+        }
+
+        // load method [action]
+        if (isset($urlArray[1])) {
+            $method = $urlArray[1];
+            if (method_exists($this->currentController, $method)) {
+                $this->currentMethod = $method;
+            }
+            unset($urlArray[1]);
+        }
+
+        // Get parameters , the rest of the array
+        // empty array produce false condition
+        $this->params= $urlArray ? array_values($urlArray) : [];
+
+        // Call [action]
+        call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
+
     }
     final public function getUrl() : array
     {
