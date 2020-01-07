@@ -12,6 +12,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php Helpers\Layout\print_mvc_title(); ?></title>
+    <link rel="stylesheet" href="<?php \Helpers\Layout\print_css(); ?>">
 </head>
 <body>
 <h1>Header</h1>
@@ -22,5 +23,6 @@
 </div>
 <h1>Footer</h1>
 
+<script src="<?php \Helpers\Layout\print_js(); ?>"></script>
 </body>
 </html>
