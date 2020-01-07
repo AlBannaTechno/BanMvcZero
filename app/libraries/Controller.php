@@ -18,9 +18,19 @@ class ControllerBase {
     }
 
     // Load View
-
-    public function view($view, $data = []) {
-        // static::class : get class who called this method / child
+    public function view($data = [], $view = '') {
+        if ($view === ''){
+            // get view with the same name as method called this method from a child class
+            // to reduce memory usage from debug_backtrace
+            $dbt=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS,2);
+            $caller = $dbt[1]['function'];
+            if ($caller) {
+                $view = $caller;
+            } else{
+                die('Invalid view name');
+            }
+        }
+        // static::class : get class who called this method /
         $view = '../app/views/' . static::class . '/' . $view . '.php';
         if (file_exists($view)){
             include_once $view;
