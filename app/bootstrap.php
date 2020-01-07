@@ -14,3 +14,9 @@ require_once 'config/config.php';
 spl_autoload_register(static function($className){
     require_once 'libraries/' . $className . '.php';
 });
+
+// include helpers
+// here we must not include any optional helpers , only VI helpers
+// for example layout helpers will used always so we need it
+
+include '../app/helpers/layoutHelpers.php';
