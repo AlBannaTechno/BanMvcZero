@@ -1,3 +1,4 @@
 <?php
 require_once '../app/bootstrap.php';
-echo 'public';
+echo 'public<br/>';
+$core = new Core();
