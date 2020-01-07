@@ -18,8 +18,8 @@ class ControllerBase {
     }
 
     // Load View
-    // $model : will available in any view
     public function view($model = [], $view = '') {
+        // $model : will available in any view
         if ($view === ''){
             // get view with the same name as method called this method from a child class
             // to reduce memory usage from debug_backtrace
@@ -34,10 +34,18 @@ class ControllerBase {
         // static::class : get class who called this method /
         $view = '../app/views/' . static::class . '/' . $view . '.php';
         if (file_exists($view)){
-            include_once $view;
+            $GLOBALS['__BODY__'] = $this->render_php($view, $model);
+            include_once '../app/views/_layout.php';
         } else {
             die('View [' .$view . '] does not exist');
         }
+    }
+
+    private function render_php($path, array $model){
+        // passing array $model :  will make model available in this context
+        ob_start();
+        include($path);
+        return ob_get_clean(); // = ob_get_contents() & ob_end_clean()
     }
 
 }
