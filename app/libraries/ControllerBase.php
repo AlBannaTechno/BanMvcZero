@@ -11,6 +11,7 @@
 
 class ControllerBase {
 
+    protected  $title = '';
     // Load Model
     public function model($model){
         require_once '../app/models/' . $model . '.php';
@@ -34,7 +35,8 @@ class ControllerBase {
         // static::class : get class who called this method /
         $view = '../app/views/' . static::class . '/' . $view . '.php';
         if (file_exists($view)){
-            $GLOBALS['__BODY__'] = $this->render_php($view, $model);
+            $GLOBALS[__GLOB__BODY__] = $this->render_php($view, $model);
+            $GLOBALS[__GLOB__CONTROLLER_TITLE__] = $this->title;
             include_once '../app/views/' . __LAYOUT__;
         } else {
             die('View [' .$view . '] does not exist');
