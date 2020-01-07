@@ -18,7 +18,8 @@ class ControllerBase {
     }
 
     // Load View
-    public function view($data = [], $view = '') {
+    // $model : will available in any view
+    public function view($model = [], $view = '') {
         if ($view === ''){
             // get view with the same name as method called this method from a child class
             // to reduce memory usage from debug_backtrace
