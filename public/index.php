@@ -1,3 +1,4 @@
 <?php
 require_once '../app/bootstrap.php';
-$core = new  AreaCore();
+//$core = new  AreaCore();
+$provider = new CoresProvider();
