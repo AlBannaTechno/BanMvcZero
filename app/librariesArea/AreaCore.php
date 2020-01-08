@@ -23,6 +23,7 @@ class AreaCore{
         if (isset($urlArray[0]) ) {
             $this->currentArea = ucwords($urlArray[0]);
             unset($urlArray[0]);
+            $this->check_area_defaults();
         }
 //        print_r($this->currentArea);
 
@@ -40,9 +41,6 @@ class AreaCore{
                 unset($urlArray[1]);
             }
 
-        } else {
-            // no area provided
-            $this->check_area_defaults();
         }
 
         require_once '../app/Areas/'.$this->currentArea.'/Controllers/'. $this->currentController . '.php';
