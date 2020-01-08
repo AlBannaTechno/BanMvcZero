@@ -57,7 +57,7 @@ class AreaControllerBase {
         }
     }
 
-    private function render_php($path, object $model){
+    private function render_php($path, object $model = null){
         // passing array $model :  will make model available in this context
         // Also because of Intellisense problems , we will save the model in the globals
         // $model will still available
