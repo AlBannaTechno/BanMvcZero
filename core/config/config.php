@@ -62,3 +62,5 @@ define('__DEFAULT_PAGES_PATH__','Pages/');
 define('__DEFAULT_MODELS_PATH__','models/');
 define('__DEFAULT_CONTROLLERS_PATH__','controllers/');
 define('__DEFAULT_VIEWS_PATH__','views/');
+
+define('__DEFAULT_CURRENT_CONTROLLER_NAME__', 'Home');

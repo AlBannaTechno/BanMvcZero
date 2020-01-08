@@ -9,7 +9,7 @@
  */
 
 class Core{
-    protected $currentController = 'Home';
+    protected $currentController = __DEFAULT_CURRENT_CONTROLLER_NAME__;
     protected $currentMethod = 'index';
     protected $params = [];
 
