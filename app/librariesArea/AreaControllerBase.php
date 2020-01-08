@@ -14,14 +14,20 @@ class AreaControllerBase {
     public function __construct($area = '')
     {
         $this->area = $area;
+        $this->model_name = static::class . 'Model';
     }
 
     protected  $title = '';
     protected $area = '';
-    // Load Model
-    public function model($model) : object {
-        require_once '../app/Areas/' . $this->area . '/' . 'Models' . $model . '.php';
-        return new $model();
+    protected $model_name = '';
+    // Load Model : loading Model file to allow dynamically use it from controller actions
+    // then we must call $this->loadModel(); before creating new model and passing it
+    // we can call it from the constructor , or we will need to call it with every action
+    public function loadModel($name = '') : void {
+        if ($name) {
+            $this->model_name = $name;
+        }
+        require_once '../app/Areas/' . $this->area . '/' . 'Models/' . $this->model_name . '.php';
     }
 
     protected function setActionTitle(string $title): void
