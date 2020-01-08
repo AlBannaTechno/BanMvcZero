@@ -27,7 +27,7 @@ class AreaControllerBase {
         if ($name) {
             $this->model_name = $name;
         }
-        require_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__ . $this->area . '/' . 'Models/' . $this->model_name . '.php';
+        require_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__ . $this->area . '/' . __DEFAULT_AREA__MODELS_PATH__ . $this->model_name . '.php';
     }
 
     protected function setActionTitle(string $title): void

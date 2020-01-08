@@ -41,7 +41,7 @@ class AreaCore{
             $controller = ucwords($urlArray[1]);
             if (
 //            file_exists(__SPECIFICATION_CORE_LOCATION__ . 'controllers/' . $controller . '.php')) {
-            file_exists(__SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__ . $this->currentArea.'/Controllers/'. $controller . '.php')) {
+            file_exists(__SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__ . $this->currentArea.'/' . __DEFAULT_AREA__CONTROLLERS_PATH__ . $controller . '.php')) {
                 $this->currentController = $controller;
                 // free location
                 unset($urlArray[1]);
@@ -49,7 +49,7 @@ class AreaCore{
 
         }
 
-        require_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__ .$this->currentArea.'/Controllers/'. $this->currentController . '.php';
+        require_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__ .$this->currentArea.'/' . __DEFAULT_AREA__CONTROLLERS_PATH__ . $this->currentController . '.php';
         $this->currentController = new $this->currentController($this->currentArea);
 
         // load method [action]
