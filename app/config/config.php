@@ -1,5 +1,8 @@
 <?php
 
+// Import secrets
+include_once '../app/Secrets.php';
+
 // App Root
 define('APP_ROOT', dirname(__FILE__, 2));
 
