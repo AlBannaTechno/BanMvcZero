@@ -11,7 +11,7 @@
 class AreaCore{
     protected $currentController = 'Home';
     protected $currentMethod = 'index';
-    protected $currentArea = 'Public';
+    protected $currentArea = 'Main'; // can not use public , reversed for apache
     protected $params = [];
 
     public function __construct()
@@ -26,6 +26,7 @@ class AreaCore{
         }
 //        print_r($this->currentArea);
 
+        // All next conditions is implicitly false if the previous is false : TODO we should deal with this behaviour
         // Load controller , The first value of the $urlArray
         // -> due to .htaccess rules , current location is ./public/index.php .
         if (isset($urlArray[1]) ) {
@@ -39,6 +40,9 @@ class AreaCore{
                 unset($urlArray[1]);
             }
 
+        } else {
+            // no area provided
+            $this->check_area_defaults();
         }
 
         require_once '../app/Areas/'.$this->currentArea.'/Controllers/'. $this->currentController . '.php';
@@ -78,5 +82,17 @@ class AreaCore{
             return $url;
         }
         return [];
+    }
+
+    // check if _default.php exist , to load defaults from it
+    private function check_area_defaults(): void {
+        $defaults = '../app/Areas/' . $this->currentArea . '/' . __AREA_DEFAULTS__;
+        if (file_exists($defaults)) {
+            include_once $defaults;
+            if (isset($GLOBALS[__GLOB__AREA__DEFAULT_CONTROLLER])) {
+                $this->currentController = $GLOBALS[__GLOB__AREA__DEFAULT_CONTROLLER];
+            }
+        }
+
     }
 }
