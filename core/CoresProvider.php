@@ -4,7 +4,7 @@ use function Helpers\Core\get_url_slugs;
 use function Helpers\Core\get_url;
 
 /**
- * Routing Start From
+ * Routing As : {Order related to __CORE_DEFAULT_ROUTING_SYSTEMS__}
  * [AreaCore] Area -> AreaController -> AreaControllerView
  * [Core] Controller -> ControllerView
  * [Render] Pages

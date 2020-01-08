@@ -13,8 +13,8 @@ use function Helpers\Core\get_url_slugs;
 
 class AreaCore{
     protected $currentController = '';
-    protected $currentMethod = 'index';
-    protected $currentArea = ''; // can not use public , reversed for apache
+    protected $currentMethod = __DEFAULT_AREA__CONTROLLER_CURRENT_METHOD_NAME__;
+    protected $currentArea = ''; // can not use public as area name , reversed for apache
     protected $params = [];
 
     public function __construct()
@@ -77,6 +77,9 @@ class AreaCore{
             include_once $defaults;
             if (isset($GLOBALS[__GLOB__AREA__DEFAULT_CONTROLLER])) {
                 $this->currentController = $GLOBALS[__GLOB__AREA__DEFAULT_CONTROLLER];
+            }
+            if (isset($GLOBALS[__GLOB__AREA__DEFAULT_CONTROLLER_METHOD])) {
+                $this->currentMethod = $GLOBALS[__GLOB__AREA__DEFAULT_CONTROLLER_METHOD];
             }
         }
 

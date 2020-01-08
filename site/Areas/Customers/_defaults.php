@@ -4,3 +4,4 @@
 // As   http://localhost/BanMVC/Customers/Payment
 // As   http://localhost/BanMVC/Customers/Payment/Index
 $GLOBALS[__GLOB__AREA__DEFAULT_CONTROLLER] = 'Payment';
+$GLOBALS[__GLOB__AREA__DEFAULT_CONTROLLER_METHOD] = 'index';

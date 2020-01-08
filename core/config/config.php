@@ -29,6 +29,7 @@ define('__GLOB__CONTROLLER_TITLE__', '__CONTROLLER_TITLE__');
 define('__GLOB__CONTROLLER_ACTION_TITLE__', '__CONTROLLER_ACTION_TITLE__');
 define('__GLOB__MODEL__', '__MODEL__');
 define('__GLOB__AREA__DEFAULT_CONTROLLER', '__AREA_DEFAULT_CONTROLLER__');
+define('__GLOB__AREA__DEFAULT_CONTROLLER_METHOD', '__AREA_DEFAULT_CONTROLLER__METHOD__');
 
 // __AREA_DEFAULT_AREA__ : only will valid if
 // ___ROUTING_SYSTEM_AREAS__ is on top of __CORE_DEFAULT_ROUTING_SYSTEMS__
@@ -66,3 +67,6 @@ define('__DEFAULT_VIEWS_PATH__','views/');
 // for controllers which not belongs to an area
 define('__DEFAULT_CURRENT_CONTROLLER_NAME__', 'Home');
 define('__DEFAULT_CURRENT_METHOD_NAME__', 'index');
+
+// For Area
+define('__DEFAULT_AREA__CONTROLLER_CURRENT_METHOD_NAME__', 'index');
