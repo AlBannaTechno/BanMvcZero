@@ -1,7 +1,8 @@
 <?php
-
+// application directory related to core directory
+define('__SPECIFICATION_APP_LOCATION__',  '../app/');
 // Import secrets
-include_once '../app/Secrets.php';
+include_once __SPECIFICATION_APP_LOCATION__ . 'Secrets.php';
 
 // App Root
 define('APP_ROOT', dirname(__FILE__, 2));

@@ -1,7 +1,7 @@
 <?php
 // Although the current directory is app/views , but in real this page rendered from public/index.php
 // so we can define it in bootstrap.php
-//include '../app/helpers/layoutHelpers.php';
+//include __SPECIFICATION_APP_LOCATION__ . 'helpers/layoutHelpers.php';
 
 ?>
 <!doctype html>
@@ -11,8 +11,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php Helpers\Layout\print_mvc_title(); ?></title>
-    <link rel="stylesheet" href="<?php \Helpers\Layout\print_css(); ?>">
+    <title><?php use function Helpers\Layout\print_css;
+        use function Helpers\Layout\print_js;
+
+        Helpers\Layout\print_mvc_title(); ?></title>
+    <link rel="stylesheet" href="<?php print_css(); ?>">
 </head>
 <body>
 <h1>Header</h1>
@@ -23,6 +26,6 @@
 </div>
 <h1>Footer</h1>
 
-<script src="<?php \Helpers\Layout\print_js(); ?>"></script>
+<script src="<?php print_js(); ?>"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 // Although the current directory is app/views , but in real this page rendered from public/index.php
 // so we can define it in bootstrap.php
-//include '../app/helpers/layoutHelpers.php';
+//include __SPECIFICATION_APP_LOCATION__ . 'helpers/layoutHelpers.php';
 use function Helpers\Layout\print_css;
 use function Helpers\Layout\print_js;
 use function Helpers\Layout\print_mvc_title;

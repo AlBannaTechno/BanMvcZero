@@ -1,5 +1,5 @@
 <?php
-include_once '../app/models/AboutModel.php';
+include_once __SPECIFICATION_APP_LOCATION__ . 'models/AboutModel.php';
 
 class Home extends ControllerBase
 {
