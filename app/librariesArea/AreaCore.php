@@ -1,4 +1,7 @@
 <?php
+
+use function Helpers\Core\get_url_slugs;
+
 /**
  * Core MVC Class
  * This class is responsible for
@@ -16,7 +19,7 @@ class AreaCore{
 
     public function __construct()
     {
-        $urlArray = $this->getUrl();
+        $urlArray = get_url_slugs();
 //        print_r($urlArray);
 
         // Load Area
@@ -65,24 +68,6 @@ class AreaCore{
         // Call [action]
         call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
 
-    }
-    final public function getUrl() : array
-    {
-        // we configure it in .htaccess , so the rest of the request URL will save in url variable location
-        // so we can request http://localhost/BanMVC/?url=controller/method/params
-        // or request http://localhost/BanMVC/controller/method/params
-        // it's the same
-
-        if (isset($_GET['url'])){
-            // remove any '/' from the right side of the url
-            $url =  rtrim($_GET['url'], '/');
-            // Sanitize url , remove any characters does not belong tu url standard
-            $url = filter_var($url, FILTER_SANITIZE_URL);
-            // convert url string into an array based on '/' as a separator
-            $url = explode( '/', $url);
-            return $url;
-        }
-        return [];
     }
 
     // check if _default.php exist , to load defaults from it
