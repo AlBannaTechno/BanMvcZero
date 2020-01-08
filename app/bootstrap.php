@@ -9,7 +9,7 @@ set_exception_handler(function ($exception){
 });
 // Loading Config
 require_once 'config/config.php';
-
+require_once 'CoresProvider.php';
 // Loading Libraries
 //require_once 'libraries/Core.php';
 //require_once 'libraries/ControllerBase.php';
@@ -27,7 +27,16 @@ require_once 'config/config.php';
 
 if (__CORE_FEATURES_SUPPORT_AREA__){
     spl_autoload_register(static function($className){
-        require_once 'librariesArea/' . $className . '.php';
+        $file = 'librariesArea/' . $className . '.php';
+        if (file_exists('../app/' . $file)){
+            require_once $file;
+            return;
+        }
+        $file = 'libraries/' . $className . '.php';
+        if (file_exists('../app/' . $file)) {
+            require_once $file;
+            return;
+        }
     });
 } else {
     spl_autoload_register(static function($className){
@@ -42,4 +51,5 @@ if (__CORE_FEATURES_SUPPORT_AREA__){
 
 include '../app/helpers/layoutHelpers.php';
 include '../app/helpers/modelHelpers.php';
+include '../app/helpers/coreHelpers.php';
 include '../app/Exceptions/ModelException.php';
