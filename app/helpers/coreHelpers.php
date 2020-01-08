@@ -19,3 +19,13 @@ function get_url_slugs() : array
     }
     return [];
 }
+
+function get_url(): string {
+    if (isset($_GET['url'])){
+        $url =  rtrim($_GET['url'], '/');
+        // Sanitize url , remove any characters does not belong tu url standard
+        $url = filter_var($url, FILTER_SANITIZE_URL);
+        return $url;
+    }
+    return '';
+}
