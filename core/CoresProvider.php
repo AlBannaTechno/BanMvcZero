@@ -50,13 +50,13 @@ class CoresProvider
             }
         }
 
-        include_once __SPECIFICATION_APP_LOCATION__ . 'Fallback/' . __DEFAULT_FALLBACK__404_PAGE__;
+        include_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_FALLBACK__DIR_PATH . '/' . __DEFAULT_FALLBACK__404_PAGE__;
 
     }
 
     private function check_area_available($area): bool
     {
-        return is_dir(__SPECIFICATION_APP_LOCATION__ . 'Areas/' . ucwords($area));
+        return is_dir(__SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__ . ucwords($area));
     }
 
     private function check__single_controller_available($controller): bool
