@@ -59,5 +59,6 @@ define('__DEFAULT_AREA__VIEWS_PATH__','Views/');
 define('__DEFAULT_AREA__CONTROLLERS_PATH__','Controllers/');
 define('__DEFAULT_AREA__MODELS_PATH__','Models/');
 define('__DEFAULT_PAGES_PATH__','Pages/');
+define('__DEFAULT_MODELS_PATH__','models/');
 define('__DEFAULT_CONTROLLERS_PATH__','controllers/');
 define('__DEFAULT_VIEWS_PATH__','views/');

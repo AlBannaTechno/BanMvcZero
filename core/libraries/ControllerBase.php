@@ -14,7 +14,7 @@ class ControllerBase {
     protected  $title = '';
     // Load Model
     public function model($model){
-        require_once __SPECIFICATION_APP_LOCATION__ . 'models/' . $model . '.php';
+        require_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_MODELS_PATH__ . $model . '.php';
         return new $model();
     }
 
