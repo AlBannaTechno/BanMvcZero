@@ -7,6 +7,9 @@ class Payment extends AreaControllerBase
         parent::__construct($area);
         $this->title = 'Home';
         $this->loadModel();
+        $xdb = PdoDatabase::getInstance();
+        $x =$xdb->query('SELECT * FROM pdoworks.users')->execute()->resultSet();
+//        var_dump($x);
     }
 
     public function index(){
