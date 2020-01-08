@@ -37,6 +37,11 @@ if (__CORE_FEATURES_SUPPORT_AREA__){
             require_once $file;
             return;
         }
+        $file = 'database/' . $className . '.php';
+        if (file_exists('../app/' . $file)) {
+            require_once $file;
+            return;
+        }
     });
 } else {
     spl_autoload_register(static function($className){
