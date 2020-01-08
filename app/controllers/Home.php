@@ -10,7 +10,9 @@ class Home extends ControllerBase
 
     public function index(){
         $this->setActionTitle('Index');
-        $this->view(['title' => 'Welcome From Index Of Home']);
+        $this->view(new class(){
+            public $message  = "Index Here";
+        });
     }
 
     // we may need to set default values for action parameters otherwise , php will show error
