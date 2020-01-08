@@ -24,6 +24,10 @@ define('__GLOB__CONTROLLER_TITLE__', '__CONTROLLER_TITLE__');
 define('__GLOB__CONTROLLER_ACTION_TITLE__', '__CONTROLLER_ACTION_TITLE__');
 define('__GLOB__MODEL__', '__MODEL__');
 define('__GLOB__AREA__DEFAULT_CONTROLLER', '__AREA_DEFAULT_CONTROLLER__');
+
+// __AREA_DEFAULT_AREA__ : only will valid if
+// ___ROUTING_SYSTEM_AREAS__ is on top of __CORE_DEFAULT_ROUTING_SYSTEMS__
+// otherwise either page[& default] or controller [& default] will take this place
 define('__GLOB__AREA_BASE__DEFAULT_AREA__', '__AREA_DEFAULT_AREA__');
 
 // Config CORE FEATURES
