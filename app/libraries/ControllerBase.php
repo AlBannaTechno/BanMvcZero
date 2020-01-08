@@ -18,11 +18,13 @@ class ControllerBase {
         return new $model();
     }
 
-    protected function setActionTitle(string $title){
+    protected function setActionTitle(string $title): void
+    {
         $GLOBALS[__GLOB__CONTROLLER_ACTION_TITLE__] = $title;
     }
     // Load View
-    public function view(object $model = null, $view = '') {
+    public function view(object $model = null, $view = ''): void
+    {
         // $model : will available in any view
         if ($view === ''){
             // get view with the same name as method called this method from a child class
