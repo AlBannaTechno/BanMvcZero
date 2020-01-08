@@ -1,5 +1,12 @@
 <?php
 
+// Global exception handler
+set_exception_handler(function ($exception){
+    echo '<pre>';
+    /** @noinspection ForgottenDebugOutputInspection */
+    print_r($exception);
+    echo '</pre>';
+});
 // Loading Config
 require_once 'config/config.php';
 
@@ -20,8 +27,6 @@ require_once 'config/config.php';
 
 if (__CORE_FEATURES_SUPPORT_AREA__){
     spl_autoload_register(static function($className){
-        $dbt=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS,2);
-        $caller = $dbt[1]['function'];
         require_once 'librariesArea/' . $className . '.php';
     });
 } else {
@@ -37,3 +42,4 @@ if (__CORE_FEATURES_SUPPORT_AREA__){
 
 include '../app/helpers/layoutHelpers.php';
 include '../app/helpers/modelHelpers.php';
+include '../app/Exceptions/ModelException.php';
