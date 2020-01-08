@@ -93,7 +93,7 @@ class AreaControllerBase {
 
 
         // if else include main _layout
-        $layout = __SPECIFICATION_APP_LOCATION__ . 'views/' . __LAYOUT__;
+        $layout = __SPECIFICATION_APP_LOCATION__ . __DEFAULT_VIEWS_PATH__ . __LAYOUT__;
         if (file_exists($layout)) {
             include_once $layout;
             return;

@@ -38,11 +38,11 @@ class ControllerBase {
             }
         }
         // static::class : get class who called this method /
-        $view = __SPECIFICATION_APP_LOCATION__ . 'views/' . static::class . '/' . $view . '.php';
+        $view = __SPECIFICATION_APP_LOCATION__ . __DEFAULT_VIEWS_PATH__ . static::class . '/' . $view . '.php';
         if (file_exists($view)){
             $GLOBALS[__GLOB__BODY__] = $this->render_php($view, $model);
             $GLOBALS[__GLOB__CONTROLLER_TITLE__] = $this->title;
-            include_once __SPECIFICATION_APP_LOCATION__ . 'views/' . __LAYOUT__;
+            include_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_VIEWS_PATH__ . __LAYOUT__;
         } else {
             die('View [' .$view . '] does not exist');
         }
