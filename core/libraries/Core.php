@@ -23,14 +23,14 @@ class Core{
             // every controller must start with UpperCase Letter
             $controller = ucwords($urlArray[0]);
             if (
-            file_exists(__SPECIFICATION_APP_LOCATION__ . 'controllers/' . $controller . '.php')) {
+            file_exists(__SPECIFICATION_APP_LOCATION__ . __DEFAULT_CONTROLLERS_PATH__ . $controller . '.php')) {
                 $this->currentController = $controller;
                 // free location
                 unset($urlArray[0]);
             }
         }
 
-        require_once __SPECIFICATION_APP_LOCATION__ . 'controllers/'. $this->currentController . '.php';
+        require_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_CONTROLLERS_PATH__ . $this->currentController . '.php';
         $this->currentController = new $this->currentController;
 
         // load method [action]

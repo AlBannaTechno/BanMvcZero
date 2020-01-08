@@ -61,7 +61,7 @@ class CoresProvider
 
     private function check__single_controller_available($controller): bool
     {
-        return file_exists(__SPECIFICATION_APP_LOCATION__ . 'controllers/' . ucwords($controller) . '.php');
+        return file_exists(__SPECIFICATION_APP_LOCATION__ . __DEFAULT_CONTROLLERS_PATH__ . ucwords($controller) . '.php');
     }
 
     private function check_with_include_single_page($pagePath): bool
