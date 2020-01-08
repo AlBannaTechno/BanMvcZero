@@ -10,7 +10,7 @@
 
 class Core{
     protected $currentController = __DEFAULT_CURRENT_CONTROLLER_NAME__;
-    protected $currentMethod = 'index';
+    protected $currentMethod = __DEFAULT_CURRENT_METHOD_NAME__;
     protected $params = [];
 
     public function __construct()

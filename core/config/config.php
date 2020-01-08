@@ -63,4 +63,6 @@ define('__DEFAULT_MODELS_PATH__','models/');
 define('__DEFAULT_CONTROLLERS_PATH__','controllers/');
 define('__DEFAULT_VIEWS_PATH__','views/');
 
+// for controllers which not belongs to an area
 define('__DEFAULT_CURRENT_CONTROLLER_NAME__', 'Home');
+define('__DEFAULT_CURRENT_METHOD_NAME__', 'index');
