@@ -26,7 +26,7 @@ class CoresProvider
 //                        break;
                     }
                 } else {
-                    $page = __SPECIFICATION_CORE_LOCATION__ . 'Pages/' . __DEFAULT_PAGE__;
+                    $page = __SPECIFICATION_APP_LOCATION__ . 'Pages/' . __DEFAULT_PAGE__;
                     if (file_exists($page)) {
                         include_once $page;
                         return;
@@ -35,14 +35,14 @@ class CoresProvider
                 }
             }
             else if ($r_system === ___ROUTING_SYSTEM_CONTROLLERS__) {
-                if ($this->check__single_controller_available($url_slugs[0])){
+                if ($url_slugs && $this->check__single_controller_available($url_slugs[0])){
                     new Core();
                     return;
 //                    break;
                 }
             }
             else if ($r_system === ___ROUTING_SYSTEM_AREAS__) {
-                if ($this->check_area_available($url_slugs[0])){
+                if ($url_slugs && $this->check_area_available($url_slugs[0])){
                     new AreaCore();
                     return;
 //                    break;
@@ -50,23 +50,23 @@ class CoresProvider
             }
         }
 
-        include_once __SPECIFICATION_CORE_LOCATION__ . 'Fallback/' . __DEFAULT_FALLBACK__404_PAGE__;
+        include_once __SPECIFICATION_APP_LOCATION__ . 'Fallback/' . __DEFAULT_FALLBACK__404_PAGE__;
 
     }
 
     private function check_area_available($area): bool
     {
-        return is_dir(__SPECIFICATION_CORE_LOCATION__ . 'Areas/' . ucwords($area));
+        return is_dir(__SPECIFICATION_APP_LOCATION__ . 'Areas/' . ucwords($area));
     }
 
     private function check__single_controller_available($controller): bool
     {
-        return file_exists(__SPECIFICATION_CORE_LOCATION__ . 'controllers/' . ucwords($controller) . '.php');
+        return file_exists(__SPECIFICATION_APP_LOCATION__ . 'controllers/' . ucwords($controller) . '.php');
     }
 
     private function check_with_include_single_page($pagePath): bool
     {
-        $page = __SPECIFICATION_CORE_LOCATION__ . 'Pages/' . $pagePath . '.php';
+        $page = __SPECIFICATION_APP_LOCATION__ . 'Pages/' . $pagePath . '.php';
         if(file_exists($page)){
             include_once $page;
             return true;
