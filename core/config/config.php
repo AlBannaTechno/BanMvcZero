@@ -1,6 +1,6 @@
 <?php
 // application directory related to core directory
-define('__SPECIFICATION_APP_LOCATION__',  '../app/');
+define('__SPECIFICATION_APP_LOCATION__',  '../core/');
 // Import secrets
 include_once __SPECIFICATION_APP_LOCATION__ . 'Secrets.php';
 
