@@ -56,3 +56,4 @@ define('__DEFAULT_FALLBACK__404_PAGE__', 'page404.php');
 
 define('__DEFAULT_AREAS_PATH__','Areas/');
 define('__DEFAULT_AREA__VIEWS_PATH__','Views/');
+define('__DEFAULT_PAGES_PATH__','Pages/');

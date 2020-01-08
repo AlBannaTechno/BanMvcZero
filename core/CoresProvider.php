@@ -26,7 +26,7 @@ class CoresProvider
 //                        break;
                     }
                 } else {
-                    $page = __SPECIFICATION_APP_LOCATION__ . 'Pages/' . __DEFAULT_PAGE__;
+                    $page = __SPECIFICATION_APP_LOCATION__ . __DEFAULT_PAGES_PATH__ . __DEFAULT_PAGE__;
                     if (file_exists($page)) {
                         include_once $page;
                         return;
@@ -66,7 +66,7 @@ class CoresProvider
 
     private function check_with_include_single_page($pagePath): bool
     {
-        $page = __SPECIFICATION_APP_LOCATION__ . 'Pages/' . $pagePath . '.php';
+        $page = __SPECIFICATION_APP_LOCATION__ . __DEFAULT_PAGES_PATH__ . $pagePath . '.php';
         if(file_exists($page)){
             include_once $page;
             return true;
