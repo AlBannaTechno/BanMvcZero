@@ -29,3 +29,15 @@ function get_url(): string {
     }
     return '';
 }
+
+// We will only use this function if we decide to support query parameters
+// eg. ?x=23&run=Play
+// we need to modify this function to use less memory
+function get_url_params() : array {
+    $arr = array();
+    // warn #bug : $_GET return duplicated values
+    foreach ($_GET as $key => $value) {
+        $arr[$key] = $value;
+    }
+    return array_unique($arr);
+}
