@@ -9,9 +9,9 @@
  */
 
 class AreaCore{
-    protected $currentController = 'Home';
+    protected $currentController = '';
     protected $currentMethod = 'index';
-    protected $currentArea = 'Main'; // can not use public , reversed for apache
+    protected $currentArea = ''; // can not use public , reversed for apache
     protected $params = [];
 
     public function __construct()
@@ -23,8 +23,11 @@ class AreaCore{
         if (isset($urlArray[0]) ) {
             $this->currentArea = ucwords($urlArray[0]);
             unset($urlArray[0]);
-            $this->check_area_defaults();
         }
+        if (!$this->currentArea){
+            $this->check_area_base_defaults();
+        }
+        $this->check_area_defaults();
 //        print_r($this->currentArea);
 
         // All next conditions is implicitly false if the previous is false : TODO we should deal with this behaviour
@@ -92,5 +95,15 @@ class AreaCore{
             }
         }
 
+    }
+
+    private function check_area_base_defaults(): void{
+        $defaults = '../app/Areas/' . __AREA_BASE_DEFAULTS__;
+        if (file_exists($defaults)) {
+            include_once $defaults;
+            if (isset($GLOBALS[__GLOB__AREA_BASE__DEFAULT_AREA__])){
+                $this->currentArea = $GLOBALS[__GLOB__AREA_BASE__DEFAULT_AREA__];
+            }
+        }
     }
 }
