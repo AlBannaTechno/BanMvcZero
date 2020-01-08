@@ -1,6 +1,5 @@
 <?php
-$model = PaymentModel::load();
-
+//$model = PaymentModel::load();
 ?>
 
 <div>

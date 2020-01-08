@@ -11,12 +11,13 @@ class Payment extends AreaControllerBase
 
     public function index(){
         $this->setActionTitle('Main');
-        $this->view(new PaymentModel(20, 'Osama', 55));
+        $this->view();
     }
 
 
     public function buy($id, $name){
-
+        $this->setActionTitle('Buy');
+        $this->view(new PaymentModel($id, $name, 55));
     }
 
 }
