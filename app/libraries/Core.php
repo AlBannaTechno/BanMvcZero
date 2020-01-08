@@ -28,10 +28,10 @@ class Core{
                 // free location
                 unset($urlArray[0]);
             }
-
-            require_once '../app/controllers/'. $this->currentController . '.php';
-            $this->currentController = new $this->currentController;
         }
+
+        require_once '../app/controllers/'. $this->currentController . '.php';
+        $this->currentController = new $this->currentController;
 
         // load method [action]
         if (isset($urlArray[1])) {
