@@ -1,5 +1,4 @@
 <?php
-include_once '../app/Areas/Customers/Models/PaymentModel.php';
 
 class Payment extends AreaControllerBase
 {
@@ -7,6 +6,7 @@ class Payment extends AreaControllerBase
     {
         parent::__construct($area);
         $this->title = 'Home';
+        $this->loadModel();
     }
 
     public function index(){

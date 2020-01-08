@@ -6,7 +6,7 @@ class PaymentModel extends AreaModel
     public $name;
     public $price;
 
-    public function __construct($id, $name, $price)
+    public function __construct($id = -1, $name = '', $price = '')
     {
         $this->id = $id;
         $this->name = $name;
