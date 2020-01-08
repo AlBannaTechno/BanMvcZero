@@ -40,8 +40,8 @@ class AreaCore{
             // every controller must start with UpperCase Letter
             $controller = ucwords($urlArray[1]);
             if (
-//            file_exists(__SPECIFICATION_APP_LOCATION__ . 'controllers/' . $controller . '.php')) {
-            file_exists(__SPECIFICATION_APP_LOCATION__ . 'Areas/'.$this->currentArea.'/Controllers/'. $controller . '.php')) {
+//            file_exists(__SPECIFICATION_CORE_LOCATION__ . 'controllers/' . $controller . '.php')) {
+            file_exists(__SPECIFICATION_CORE_LOCATION__ . 'Areas/'.$this->currentArea.'/Controllers/'. $controller . '.php')) {
                 $this->currentController = $controller;
                 // free location
                 unset($urlArray[1]);
@@ -49,7 +49,7 @@ class AreaCore{
 
         }
 
-        require_once __SPECIFICATION_APP_LOCATION__ . 'Areas/'.$this->currentArea.'/Controllers/'. $this->currentController . '.php';
+        require_once __SPECIFICATION_CORE_LOCATION__ . 'Areas/'.$this->currentArea.'/Controllers/'. $this->currentController . '.php';
         $this->currentController = new $this->currentController($this->currentArea);
 
         // load method [action]
@@ -72,7 +72,7 @@ class AreaCore{
 
     // check if _default.php exist , to load defaults from it
     private function check_area_defaults(): void {
-        $defaults = __SPECIFICATION_APP_LOCATION__ . 'Areas/' . $this->currentArea . '/' . __AREA_DEFAULTS__;
+        $defaults = __SPECIFICATION_CORE_LOCATION__ . 'Areas/' . $this->currentArea . '/' . __AREA_DEFAULTS__;
         if (file_exists($defaults)) {
             include_once $defaults;
             if (isset($GLOBALS[__GLOB__AREA__DEFAULT_CONTROLLER])) {
@@ -83,7 +83,7 @@ class AreaCore{
     }
 
     private function check_area_base_defaults(): void{
-        $defaults = __SPECIFICATION_APP_LOCATION__ . 'Areas/' . __AREA_BASE_DEFAULTS__;
+        $defaults = __SPECIFICATION_CORE_LOCATION__ . 'Areas/' . __AREA_BASE_DEFAULTS__;
         if (file_exists($defaults)) {
             include_once $defaults;
             if (isset($GLOBALS[__GLOB__AREA_BASE__DEFAULT_AREA__])){

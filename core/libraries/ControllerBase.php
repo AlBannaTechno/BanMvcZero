@@ -14,7 +14,7 @@ class ControllerBase {
     protected  $title = '';
     // Load Model
     public function model($model){
-        require_once __SPECIFICATION_APP_LOCATION__ . 'models/' . $model . '.php';
+        require_once __SPECIFICATION_CORE_LOCATION__ . 'models/' . $model . '.php';
         return new $model();
     }
 
@@ -38,11 +38,11 @@ class ControllerBase {
             }
         }
         // static::class : get class who called this method /
-        $view = __SPECIFICATION_APP_LOCATION__ . 'views/' . static::class . '/' . $view . '.php';
+        $view = __SPECIFICATION_CORE_LOCATION__ . 'views/' . static::class . '/' . $view . '.php';
         if (file_exists($view)){
             $GLOBALS[__GLOB__BODY__] = $this->render_php($view, $model);
             $GLOBALS[__GLOB__CONTROLLER_TITLE__] = $this->title;
-            include_once __SPECIFICATION_APP_LOCATION__ . 'views/' . __LAYOUT__;
+            include_once __SPECIFICATION_CORE_LOCATION__ . 'views/' . __LAYOUT__;
         } else {
             die('View [' .$view . '] does not exist');
         }

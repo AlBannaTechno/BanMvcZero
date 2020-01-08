@@ -28,17 +28,17 @@ require_once 'CoresProvider.php';
 if (__CORE_FEATURES_SUPPORT_AREA__){
     spl_autoload_register(static function($className){
         $file = 'librariesArea/' . $className . '.php';
-        if (file_exists(__SPECIFICATION_APP_LOCATION__ . '' . $file)){
+        if (file_exists(__SPECIFICATION_CORE_LOCATION__ . '' . $file)){
             require_once $file;
             return;
         }
         $file = 'libraries/' . $className . '.php';
-        if (file_exists(__SPECIFICATION_APP_LOCATION__ . '' . $file)) {
+        if (file_exists(__SPECIFICATION_CORE_LOCATION__ . '' . $file)) {
             require_once $file;
             return;
         }
         $file = 'database/' . $className . '.php';
-        if (file_exists(__SPECIFICATION_APP_LOCATION__ . '' . $file)) {
+        if (file_exists(__SPECIFICATION_CORE_LOCATION__ . '' . $file)) {
             require_once $file;
             return;
         }
@@ -54,7 +54,7 @@ if (__CORE_FEATURES_SUPPORT_AREA__){
 // here we must not include any optional helpers , only VI helpers
 // for example layout helpers will used always so we need it
 
-include __SPECIFICATION_APP_LOCATION__ . 'helpers/layoutHelpers.php';
-include __SPECIFICATION_APP_LOCATION__ . 'helpers/modelHelpers.php';
-include __SPECIFICATION_APP_LOCATION__ . 'helpers/coreHelpers.php';
-include __SPECIFICATION_APP_LOCATION__ . 'Exceptions/ModelException.php';
+include __SPECIFICATION_CORE_LOCATION__ . 'helpers/layoutHelpers.php';
+include __SPECIFICATION_CORE_LOCATION__ . 'helpers/modelHelpers.php';
+include __SPECIFICATION_CORE_LOCATION__ . 'helpers/coreHelpers.php';
+include __SPECIFICATION_CORE_LOCATION__ . 'Exceptions/ModelException.php';
