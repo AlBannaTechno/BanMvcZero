@@ -73,7 +73,7 @@ class Container
 
         return $this->_resolve($this->_collection[$interface][0], $interface);
     }
-    public function _resolve(array $interface_meta, string $interface_name) : object {
+    private function _resolve(array $interface_meta, string $interface_name) : object {
 
         // we will only get the fist implementation
         [$class, $registerType, $params] = $interface_meta;
