@@ -59,3 +59,15 @@ include __SPECIFICATION_CORE_LOCATION__ . 'helpers/modelHelpers.php';
 include __SPECIFICATION_CORE_LOCATION__ . 'helpers/coreHelpers.php';
 include __SPECIFICATION_CORE_LOCATION__ . 'Exceptions/ModelException.php';
 include __SPECIFICATION_CORE_LOCATION__ . 'IoC/Container.php';
+
+function register_core_types(Container $container){
+
+    $container->provide(CoresProvider::class);
+    $container->provide(ControllerBase::class);
+    $container->provide(Core::class);
+    $container->provide(Model::class);
+    $container->provide(AreaControllerBase::class);
+    $container->provide(AreaCore::class);
+    $container->provide(AreaModel::class);
+    $container->provide(PdoDatabase::class);
+}
