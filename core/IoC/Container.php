@@ -91,6 +91,11 @@ class Container
         return null;
     }
 
+    /**
+     * @param $interface
+     * @param array $params must be an associative array with inputs names
+     * @return object
+     */
     public function resolve($interface, $params = []) : object {
         if (!$this->built){
             throw new RuntimeException('You Must Build The Container Before Resolving Any Dependency');
