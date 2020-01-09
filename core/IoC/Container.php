@@ -6,7 +6,7 @@ class Container
     // TODO may use bitwise flags
     public const REG_TYPE_NORMAL = 0x01;
     public const REG_TYPE_SINGLETON = 0x02;
-    public const REG_TYPE_NON_LAZY_SINGLETON = 0x03; // will resolve while building
+    public const REG_TYPE_NON_LAZY_SINGLETON = 0x03;
     public const REG_TYPE_APPLICATION_SINGLETON = 0x04;
     public const REG_TYPE_NON_LAZY_APPLICATION_SINGLETON = 0x05;
 
@@ -25,7 +25,7 @@ class Container
         // init all non_lazy_singletons // O(N^2)
         foreach ($this->_collection as $interface_name => $interface_array){
             foreach ($interface_array as $numeric_key => $interface){
-                [$class, $registerType, $params] = $interface;
+                [$class, $registerType] = $interface;
                 if ($registerType === self::REG_TYPE_NON_LAZY_SINGLETON) {
                     $_local_singletons[$interface][$class] =
                         $this->_resolve($interface, $interface_name);
@@ -42,7 +42,7 @@ class Container
     public function all_implementations(string $interface) : array {
         $imps = [];
         foreach ($this->_collection[$interface] as $key => $value){
-            [$class, $registerType, $params] = $value;
+            [$class, $registerType] = $value;
             if ($registerType === self::REG_TYPE_NON_LAZY_SINGLETON || $registerType === self::REG_TYPE_SINGLETON){
                 $imps[] =  $this->_local_singletons[$interface][$class];
             } else{
@@ -58,7 +58,7 @@ class Container
         // array values is mutable so we need to clone it , to kept the
         // so we will clone it with list() or []
         if (!isset($this->_collection[$interface])){
-                throw new \RuntimeException('No Register Type For '  . $interface);
+                throw new RuntimeException('No Register Type For '  . $interface);
         }
 
         return $this->_resolve($this->_collection[$interface][0], $interface);
@@ -120,7 +120,7 @@ class Container
             }
             return $obj;
 
-        } catch (\ReflectionException $e) {
+        } catch (ReflectionException $e) {
             echo 'Error in reflection'; // we must throw exception here
         }
         return null;
@@ -129,11 +129,12 @@ class Container
 
     public function register(string $interface, string $class, $params = [],
                              $registerType = Container::REG_TYPE_NORMAL) : void {
-        if (!$this->can_substitute($class, $interface))
-            throw new \Exception('Provided class must implements provided interface');
+        if (!$this->can_substitute($class, $interface)) {
+            throw new RuntimeException('Provided class must implements provided interface');
+        }
 
         if ($this->provided($interface, $class)){
-            throw new \Exception('You already define this combination');
+            throw new RuntimeException('You already define this combination');
         }
         switch ($registerType){
             case self::REG_TYPE_SINGLETON :
@@ -161,12 +162,13 @@ class Container
             }
             $ref = new ReflectionClass($class);
             return $ref->implementsInterface($interface);
-        } catch (\ReflectionException $e) {
+        } catch (ReflectionException $e) {
         }
         return false;
     }
 
-    private function provided(string $interface, string $class){
+    private function provided(string $interface, string $class): bool
+    {
         if (!isset($this->_collection[$interface])){
             return false;
         }
@@ -179,7 +181,7 @@ class Container
     private function in_collection(string $interface, string $class) : bool {
         $all = $this->_collection[$interface];
         foreach ($all as $key => $value) {
-            [$cls, $registerType, $params] = $value;
+            [$cls] = $value;
             if($class === $cls) {
                 return true;
             }
@@ -200,7 +202,11 @@ class Container
 
     // lazy loading
     private function register_singleton(string $interface, string $class, $params = [], $lazy = true) : void  {
-        $this->internal_registration($interface, $class,self::REG_TYPE_SINGLETON, $params );
+        if ($lazy){
+            $this->internal_registration($interface, $class,self::REG_TYPE_SINGLETON, $params );
+        } else{
+            $this->internal_registration($interface, $class,self::REG_TYPE_NON_LAZY_SINGLETON, $params );
+        }
         if (!isset($_local_singletons[$interface])){
             $_local_singletons[$interface] = array();
         }
