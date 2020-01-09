@@ -53,6 +53,10 @@ class Container
     }
 
     public function resolve($interface) : object {
+        // resolve itself
+        if ($interface === self::class){
+            return $this;
+        }
         //            print_line($interface);
         // [$class , $registerType, $params]
         // array values is mutable so we need to clone it , to kept the
