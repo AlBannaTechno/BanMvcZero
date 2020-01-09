@@ -12,7 +12,7 @@ use function Helpers\Core\get_url;
  */
 class CoresProvider
 {
-    public function __construct()
+    public function __construct(Container $container)
     {
 
         $url_slugs = get_url_slugs();
@@ -36,14 +36,14 @@ class CoresProvider
             }
             else if ($r_system === ___ROUTING_SYSTEM_CONTROLLERS__) {
                 if ($url_slugs && $this->check__single_controller_available($url_slugs[0])){
-                    new Core();
+                    $container->resolve(Core::class);
                     return;
 //                    break;
                 }
             }
             else if ($r_system === ___ROUTING_SYSTEM_AREAS__) {
                 if ($url_slugs && $this->check_area_available($url_slugs[0])){
-                    new AreaCore();
+                    $container->resolve(AreaCore::class);
                     return;
 //                    break;
                 }
