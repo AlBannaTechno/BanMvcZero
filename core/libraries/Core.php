@@ -1,4 +1,7 @@
 <?php
+
+use function Helpers\Core\get_url_slugs;
+
 /**
  * Core MVC Class
  * This class is responsible for
@@ -15,7 +18,7 @@ class Core{
 
     public function __construct(Container $container)
     {
-        $urlArray = $this->getUrl();
+        $urlArray = get_url_slugs();
 
         // Load controller , The first value of the $urlArray
         // -> due to .htaccess rules , current location is ./public/index.php .
@@ -49,23 +52,5 @@ class Core{
         // Call [action]
         $container->execute_func_arr($this->currentController, $this->currentMethod, $this->params);
 
-    }
-    final public function getUrl() : array
-    {
-        // we configure it in .htaccess , so the rest of the request URL will save in url variable location
-        // so we can request http://localhost/BanMVC/?url=controller/method/params
-        // or request http://localhost/BanMVC/controller/method/params
-        // it's the same
-
-        if (isset($_GET['url'])){
-            // remove any '/' from the right side of the url
-            $url =  rtrim($_GET['url'], '/');
-            // Sanitize url , remove any characters does not belong tu url standard
-            $url = filter_var($url, FILTER_SANITIZE_URL);
-            // convert url string into an array based on '/' as a separator
-            $url = explode( '/', $url);
-            return $url;
-        }
-        return [];
     }
 }
