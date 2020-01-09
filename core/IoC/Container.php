@@ -20,6 +20,8 @@ class Container
     // TODO : Check duplication type
     private $_local_singletons = array();
 
+    private $built = false;
+
     public function build() : self {
 
         // init all non_lazy_singletons // O(N^2)
@@ -35,6 +37,7 @@ class Container
                 }
             }
         }
+        $this->built = true;
         return $this;
     }
 
@@ -53,6 +56,9 @@ class Container
     }
 
     public function resolve($interface) : object {
+        if (!$this->built){
+            throw new RuntimeException('You Must Build The Container Before Resolving Any Dependency');
+        }
         // resolve itself
         if ($interface === self::class){
             return $this;
