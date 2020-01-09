@@ -18,7 +18,7 @@ class Payment extends AreaControllerBase
     }
 
 
-    public function buy($id, $name){
+    public function buy($id, $name, PdoDatabase $c){
         $this->setActionTitle('Buy');
         $this->view(new PaymentModel($id, $name, 55));
     }

@@ -2,4 +2,5 @@
 
 $model = PaymentModel::load();
 
-echo $model->name;
+/** @noinspection ForgottenDebugOutputInspection */
+print_r($model);
