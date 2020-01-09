@@ -13,7 +13,7 @@ class Core{
     protected $currentMethod = __DEFAULT_CURRENT_METHOD_NAME__;
     protected $params = [];
 
-    public function __construct()
+    public function __construct(Container $container)
     {
         $urlArray = $this->getUrl();
 
@@ -31,7 +31,7 @@ class Core{
         }
 
         require_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_CONTROLLERS_PATH__ . $this->currentController . '.php';
-        $this->currentController = new $this->currentController;
+        $this->currentController = $container->resolve($this->currentController);
 
         // load method [action]
         if (isset($urlArray[1])) {
