@@ -20,7 +20,6 @@ class AreaCore{
     public function __construct(Container $container)
     {
         $urlArray = get_url_slugs();
-//        print_r($urlArray);
 
         // Load Area
         if (isset($urlArray[0]) ) {
@@ -31,7 +30,6 @@ class AreaCore{
             $this->check_area_base_defaults();
         }
         $this->check_area_defaults();
-//        print_r($this->currentArea);
 
         // All next conditions is implicitly false if the previous is false : TODO we should deal with this behaviour
         // Load controller , The first value of the $urlArray
@@ -45,6 +43,9 @@ class AreaCore{
                 $this->currentController = $controller;
                 // free location
                 unset($urlArray[1]);
+            } else {
+                include_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_FALLBACK__DIR_PATH . '/' . __DEFAULT_FALLBACK__404_PAGE__;
+                return;
             }
 
         }
@@ -59,6 +60,9 @@ class AreaCore{
             $method = $urlArray[2];
             if (method_exists($this->currentController, $method)) {
                 $this->currentMethod = $method;
+            } else{
+                include_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_FALLBACK__DIR_PATH . '/' . __DEFAULT_FALLBACK__404_PAGE__;
+                return;
             }
             unset($urlArray[2]);
         }
@@ -68,6 +72,7 @@ class AreaCore{
         $this->params= $urlArray ? array_values($urlArray) : [];
 
         // Call [action]
+//        $container->execute_func_arr($this->currentController, $this->currentMethod, $this->params);
         call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
 
     }
