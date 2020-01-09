@@ -12,10 +12,19 @@
 abstract class ControllerBase {
 
     protected  $title = '';
+    protected $model_name = '';
+
+    public function __construct()
+    {
+        $this->model_name = static::class . 'Model';
+    }
+
     // Load Model
-    public function model($model){
-        require_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_MODELS_PATH__ . $model . '.php';
-        return new $model();
+    public function loadModel($name = '') : void {
+        if ($name) {
+            $this->model_name = $name;
+        }
+        require_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_CONTROLLERS_PATH__  . '/'  . $this->model_name . '.php';
     }
 
     protected function setActionTitle(string $title): void
