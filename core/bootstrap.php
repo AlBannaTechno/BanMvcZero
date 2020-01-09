@@ -58,3 +58,4 @@ include __SPECIFICATION_CORE_LOCATION__ . 'helpers/layoutHelpers.php';
 include __SPECIFICATION_CORE_LOCATION__ . 'helpers/modelHelpers.php';
 include __SPECIFICATION_CORE_LOCATION__ . 'helpers/coreHelpers.php';
 include __SPECIFICATION_CORE_LOCATION__ . 'Exceptions/ModelException.php';
+include __SPECIFICATION_CORE_LOCATION__ . 'IoC/Container.php';
