@@ -9,6 +9,7 @@ class Container
     public const REG_TYPE_NON_LAZY_SINGLETON = 0x03;
     public const REG_TYPE_APPLICATION_SINGLETON = 0x04;
     public const REG_TYPE_NON_LAZY_APPLICATION_SINGLETON = 0x05;
+    public const REG_TYPE_FACTORY = 0x06;
 
     /**
      * @var array
@@ -127,6 +128,8 @@ class Container
             if ($o !== null){
                 return $o;
             }
+        } elseif ($registerType === self::REG_TYPE_FACTORY){
+            return $params($init_params);
         }
 
         // will contains all params we will pass to the constructor
@@ -202,6 +205,17 @@ class Container
         $this->register($class, $class, $params, $registerType);
     }
 
+    /**
+     * @param $interface
+     * @param $factory : function will receive single parameter of type Container
+     * This is very special case : we will use $params as function not as an array
+     */
+    public function register_with_factory($interface , $factory) : void {
+        $fact = function ($optional_params = []) use ($factory) {
+            return $factory($this, $optional_params);
+        };
+        $this->internal_registration($interface, $interface, self::REG_TYPE_FACTORY, $fact);
+    }
     private function can_substitute($class, $interface) : bool {
         try {
             if($class === $interface){
