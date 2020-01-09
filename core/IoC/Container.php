@@ -75,7 +75,6 @@ class Container
             $passed_params = $params;
 
             for ($c = count($params) , $cMax = count($func_params) ; $c < $cMax; $c++){
-                echo 'CsdsdsC : ' . $c;
                 // No need to throw an exception here : because if failed then the problem with user/api-consumer not with api
                 $passed_params[] = $this->resolve($func_params[$c]->getClass()->getName());
             }
