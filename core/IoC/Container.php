@@ -55,7 +55,7 @@ class Container
         return $imps;
     }
 
-    public function resolve($interface) : object {
+    public function resolve($interface, $params = []) : object {
         if (!$this->built){
             throw new RuntimeException('You Must Build The Container Before Resolving Any Dependency');
         }
@@ -71,9 +71,9 @@ class Container
                 throw new RuntimeException('No Register Type For '  . $interface);
         }
 
-        return $this->_resolve($this->_collection[$interface][0], $interface);
+        return $this->_resolve($this->_collection[$interface][0], $interface, $params);
     }
-    private function _resolve(array $interface_meta, string $interface_name) : object {
+    private function _resolve(array $interface_meta, string $interface_name, $init_params = []) : object {
 
         // we will only get the fist implementation
         [$class, $registerType, $params] = $interface_meta;
@@ -95,6 +95,7 @@ class Container
 
         // will contains all params we will pass to the constructor
         $passed_params = array();
+        $total_specified_params = array_unique(array_merge($params, $init_params));
 
         try {
             $ref = new ReflectionClass($class);
@@ -103,8 +104,8 @@ class Container
                 if ($con_params){
                     // check if param name in $params
                     foreach ($con_params as $key => $value){
-                        if (array_key_exists($value->getName(), $params)){
-                            $passed_params[] = $params[$value->getName()];
+                        if (array_key_exists($value->getName(), $total_specified_params)){
+                            $passed_params[] = $total_specified_params[$value->getName()];
                         } else {
                             // TODO we may check if type here is not partitive
 
