@@ -9,7 +9,7 @@
  * We Will make most of ControllerBase class public {!protected} to allow direct unit testing
  */
 
-class AreaControllerBase {
+abstract class AreaControllerBase {
 
     public function __construct($area = '')
     {

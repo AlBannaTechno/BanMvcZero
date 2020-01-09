@@ -11,7 +11,7 @@
  * This is the only way i figure it to force PHP to work correctly in this generic scenario
  * [PHP does not support generics]
  */
-class AreaModel {
+abstract class AreaModel {
     public static function load() : self {
         /** @noinspection PhpIncompatibleReturnTypeInspection */
         return Heleprs\Model\loadModel();

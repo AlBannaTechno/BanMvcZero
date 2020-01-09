@@ -9,7 +9,7 @@
  * We Will make most of ControllerBase class public {!protected} to allow direct unit testing
  */
 
-class ControllerBase {
+abstract class ControllerBase {
 
     protected  $title = '';
     // Load Model

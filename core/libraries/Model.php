@@ -11,7 +11,7 @@
  * This is the only way i figure it to force PHP to work correctly in this generic scenario
  * [PHP does not support generics]
  */
-class Model {
+abstract class Model {
     public static function load() : self {
         return Heleprs\Model\loadModel();
     }
