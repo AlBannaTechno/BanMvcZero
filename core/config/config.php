@@ -70,3 +70,8 @@ define('__DEFAULT_CURRENT_METHOD_NAME__', 'index');
 
 // For Area
 define('__DEFAULT_AREA__CONTROLLER_CURRENT_METHOD_NAME__', 'index');
+
+// url mask , you must user the same mask in public/.htaccess
+// i prefer to use '_main_url_system_' instead of just 'url' to enable us to use url as a query parameter
+// if we query param with this name 'url' which considered common name
+define('__DEFAULT_SERVER_URL_PARAM_NAME__', '_main_url_system_');
