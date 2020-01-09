@@ -69,5 +69,7 @@ function register_core_types(Container $container){
     $container->provide(AreaControllerBase::class);
     $container->provide(AreaCore::class);
     $container->provide(AreaModel::class);
-    $container->provide(PdoDatabase::class);
+    $container->register_with_factory(PdoDatabase::class, static function ($container, $opt_params){
+        return PdoDatabase::getInstance();
+    });
 }
