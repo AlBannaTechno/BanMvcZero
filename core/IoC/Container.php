@@ -58,7 +58,7 @@ class Container
         // array values is mutable so we need to clone it , to kept the
         // so we will clone it with list() or []
         if (!isset($this->_collection[$interface])){
-            throw new \Exception('No Register Type For '  . $interface);
+                throw new \RuntimeException('No Register Type For '  . $interface);
         }
 
         return $this->_resolve($this->_collection[$interface][0], $interface);
