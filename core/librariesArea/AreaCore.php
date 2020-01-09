@@ -17,7 +17,7 @@ class AreaCore{
     protected $currentArea = ''; // can not use public as area name , reversed for apache
     protected $params = [];
 
-    public function __construct()
+    public function __construct(Container $container)
     {
         $urlArray = get_url_slugs();
 //        print_r($urlArray);
@@ -50,7 +50,9 @@ class AreaCore{
         }
 
         require_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__ .$this->currentArea.'/' . __DEFAULT_AREA__CONTROLLERS_PATH__ . $this->currentController . '.php';
-        $this->currentController = new $this->currentController($this->currentArea);
+        $this->currentController = $container->resolve($this->currentController, [
+            'area' => $this->currentArea
+        ]);
 
         // load method [action]
         if (isset($urlArray[2])) {
