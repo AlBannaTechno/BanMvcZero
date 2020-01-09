@@ -42,6 +42,22 @@ if (__CORE_FEATURES_SUPPORT_AREA__){
             require_once $file;
             return;
         }
+
+        // load controllers
+        $file = __DEFAULT_CONTROLLERS_PATH__ . '/' . $className . '.php'  ;
+        if (file_exists(__SPECIFICATION_APP_LOCATION__ . '' . $file)) {
+            require_once $file;
+            return;
+        }
+
+        // load area
+        $area_controllers_location = __SPECIFICATION_APP_LOCATION__ . '/' . __DEFAULT_AREAS_PATH__ . '/*'
+            . __DEFAULT_AREA__CONTROLLERS_PATH__ . '/' .$className . '.php';
+
+        $area_controllers = glob($area_controllers_location);
+        if ($area_controllers){
+            require_once $area_controllers[0];
+        }
     });
 } else {
     spl_autoload_register(static function($className){
@@ -49,6 +65,23 @@ if (__CORE_FEATURES_SUPPORT_AREA__){
     });
 }
 
+if (__CORE_FEATURES_SUPPORT_AUTO_LOAD_WITHS_STARTUP__) {
+
+    // load controllers
+    $controllers_location = __SPECIFICATION_APP_LOCATION__ . '/' . __DEFAULT_CONTROLLERS_PATH__ . '/*.php';
+    $controllers = glob($controllers_location);
+    foreach ($controllers as $key => $controller){
+        require_once $controller;
+    }
+
+    // load area controllers
+    $area_controllers_location = __SPECIFICATION_APP_LOCATION__ . '/' . __DEFAULT_AREAS_PATH__ . '/*/'
+        . __DEFAULT_AREA__CONTROLLERS_PATH__ . '/*.php';
+    $area_controllers = glob($area_controllers_location);
+    foreach ($area_controllers as $key => $area_controller){
+        require_once $area_controller;
+    }
+}
 
 // include helpers
 // here we must not include any optional helpers , only VI helpers
