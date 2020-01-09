@@ -47,7 +47,7 @@ class Core{
         $this->params= $urlArray ? array_values($urlArray) : [];
 
         // Call [action]
-        call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
+        $container->execute_func_arr($this->currentController, $this->currentMethod, $this->params);
 
     }
     final public function getUrl() : array
