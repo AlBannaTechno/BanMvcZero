@@ -42,7 +42,7 @@ class ControllerBase {
         if (file_exists($view)){
             $GLOBALS[__GLOB__BODY__] = $this->render_php($view, $model);
             $GLOBALS[__GLOB__CONTROLLER_TITLE__] = $this->title;
-            include_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_VIEWS_PATH__ . __LAYOUT__;
+            include_once $this->get_current_layout();
         } else {
             die('View [' .$view . '] does not exist');
         }
@@ -59,4 +59,13 @@ class ControllerBase {
         return ob_get_clean(); // = ob_get_contents() & ob_end_clean()
     }
 
+
+    private function get_current_layout(): ?string
+    {
+        $layout = __SPECIFICATION_APP_LOCATION__ . __DEFAULT_VIEWS_PATH__ . static::class . '/' . __LAYOUT__;
+        if (file_exists($layout)){
+            return $layout;
+        }
+        return  __SPECIFICATION_APP_LOCATION__ . __DEFAULT_VIEWS_PATH__ . __LAYOUT__;
+    }
 }
