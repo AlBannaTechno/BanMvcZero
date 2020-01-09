@@ -55,6 +55,42 @@ class Container
         return $imps;
     }
 
+    /**
+     * @param $object
+     * @param $func
+     * @param array $params
+     * @return object
+     *
+     * execute function as func(par1,par2,....contPar1,contPar2) : which contPart is a complex type
+     * registered in the container
+     * This function may return value
+     */
+    public function execute_func_arr($object, $func, $params = []) : ?object {
+
+        try{
+            $ref = new ReflectionMethod($object,$func);
+
+            $func_params = $ref->getParameters();
+            $passed_params = $params;
+
+            for ($c = count($params) , $cMax = count($func_params) ; $c < $cMax; $c++){
+                echo 'CsdsdsC : ' . $c;
+                // No need to throw an exception here : because if failed then the problem with user/api-consumer not with api
+                $passed_params[] = $this->resolve($func_params[$c]->getClass()->getName());
+            }
+
+            return $ref->invokeArgs($object, $passed_params);
+        } catch (ReflectionException $ex){
+            throw new RuntimeException('Problem with calling function '
+                . $func , ' , please check your parameters');
+        }
+
+    }
+
+    public function execute_func_ass_arr($object, $func, $params = []) : object {
+        return null;
+    }
+
     public function resolve($interface, $params = []) : object {
         if (!$this->built){
             throw new RuntimeException('You Must Build The Container Before Resolving Any Dependency');
