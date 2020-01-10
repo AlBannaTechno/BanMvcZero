@@ -115,6 +115,13 @@ This is a Simple Porting for some of asp.net core features With MVC Design Parad
                  
             
 
+* DataBase Supporting
+    * The `Zero` version does not aims to support QRM Solutions So : there is only one wrapper class
+    around PDO of php to enable providing it into DI system of this project
+    This class at `database/PdoDatabase.php` 
+    
+    * `BanMvc` will support ORM Solution
+
 ### Project Structure
 
 * core : `Contains All Project Core`
@@ -138,3 +145,11 @@ This is a Simple Porting for some of asp.net core features With MVC Design Parad
     * file `public/.htaccess`
         * you must change `RewriteBase /BanMVC/public` to `RewriteBase /your/public`
             * so configure it to your project relative path from the server/handler
+
+#####  Finally
+
+* To use this project : just take a tour at `site/` and `public/` to understand how to use it
+* To Develop it or for deep understanding go with `core/`
+
+* For `BanMvc` name : its just a funny name i combine first part of may family name with `MVC`
+    * `Osama Al Banna` => `[Osama] {Al = The : in arabic} [{Ban}na] ` Mvc `:)`
