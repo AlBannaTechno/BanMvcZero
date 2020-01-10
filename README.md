@@ -50,7 +50,7 @@ This is a Simple Porting for some of asp.net core features With MVC Design Parad
     
 * DI System : `The Implementation of IoC` , `core/Ioc/Container.php`
     * Please Notice : Since very high limitation level in PHP connection system philosophy
-    we can not implement All features IoC of asp.net core because of php delegate request/server/connection
+    we can not implement All IoC features  of asp.net core Container `DI System` because of php delegate request/server/connection
     controlling to out of the box servers eg. apache without any ability to access it even with CGI porting solutions,
     So we can not do any controlling on per-request features of asp.net core at all
     But we implement wrapper around new [APC](https://www.php.net/manual/en/book.apc.php) storage system of PHP 
