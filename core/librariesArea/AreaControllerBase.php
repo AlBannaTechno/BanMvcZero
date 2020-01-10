@@ -23,7 +23,7 @@ abstract class AreaControllerBase {
     // Notice : if we we leave $name empty , then The Core will use default view name eg,index
     public static function link(string $name = '', $params = '') : string {
         $s = get_area_from_controller_path(static::class);
-        return URL_ROOT . '/' . $s . '/' . static::class . '/' .$name . '/' . $params;
+        return URL_ROOT . '/' . $s . '/' . static::class . '/' .$name . ($params !== '' ? '/' . $params : '');
     }
 
     protected  $title = '';

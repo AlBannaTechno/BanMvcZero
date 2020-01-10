@@ -21,7 +21,7 @@ abstract class ControllerBase {
 
     // TODO : change $params usage implementation to support query params ?x=23&y=2 , when we support QP in the core
     public static function link(string $name = '', $params = '') : string {
-        return URL_ROOT . '/' . static::class . '/' .$name . '/' . $params;
+        return URL_ROOT . '/' . static::class . '/' .$name . ($params !== '' ? '/' . $params : '');
     }
 
     // Load Model
