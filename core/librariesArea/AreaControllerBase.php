@@ -1,5 +1,7 @@
 <?php
 
+use function Helpers\Core\get_area_from_controller_path;
+
 /**
  * Controller Base Class
  * Responsible for
@@ -15,6 +17,12 @@ abstract class AreaControllerBase {
     {
         $this->area = $area;
         $this->model_name = static::class . 'Model';
+    }
+
+    // TODO : change $params usage implementation to support query params ?x=23&y=2 , when we support QP in the core
+    public static function link(string $name, $params = '') : string {
+        $s = get_area_from_controller_path(static::class);
+        return URL_ROOT . '/' . $s . '/' . static::class . '/' .$name . '/' . $params;
     }
 
     protected  $title = '';
