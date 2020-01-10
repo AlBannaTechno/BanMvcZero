@@ -17,13 +17,13 @@ class AreaCore{
     protected $currentArea = ''; // can not use public as area name , reversed for apache
     protected $params = [];
 
-    public function __construct(Container $container)
+    public function __construct(Container $container, AreaMapper $areaMapper)
     {
         $urlArray = get_url_slugs();
 
         // Load Area
         if (isset($urlArray[0]) ) {
-            $this->currentArea = ucwords($urlArray[0]);
+            $this->currentArea = $areaMapper->real_area(ucwords($urlArray[0]));
             unset($urlArray[0]);
         }
         if (!$this->currentArea){

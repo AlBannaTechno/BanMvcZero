@@ -12,9 +12,11 @@ use function Helpers\Core\get_url;
  */
 class CoresProvider
 {
-    public function __construct(Container $container)
+    private $_areaMapper;
+    public function __construct(Container $container, AreaMapper $areaMapper)
     {
 
+        $this->_areaMapper = $areaMapper;
         $url_slugs = get_url_slugs();
         foreach (__CORE_DEFAULT_ROUTING_SYSTEMS__ as $r_system) {
             if ($r_system === ___ROUTING_SYSTEM_PAGES__) {
@@ -56,7 +58,10 @@ class CoresProvider
 
     private function check_area_available($area): bool
     {
-        return is_dir(__SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__ . ucwords($area));
+        $ar = __SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__  . $this->_areaMapper->real_area(ucwords($area));
+//        $arr = __SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__  . ucwords($area);
+
+        return is_dir($ar);
     }
 
     private function check__single_controller_available($controller): bool
