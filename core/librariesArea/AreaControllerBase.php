@@ -20,7 +20,8 @@ abstract class AreaControllerBase {
     }
 
     // TODO : change $params usage implementation to support query params ?x=23&y=2 , when we support QP in the core
-    public static function link(string $name, $params = '') : string {
+    // Notice : if we we leave $name empty , then The Core will use default view name eg,index
+    public static function link(string $name = '', $params = '') : string {
         $s = get_area_from_controller_path(static::class);
         return URL_ROOT . '/' . $s . '/' . static::class . '/' .$name . '/' . $params;
     }
