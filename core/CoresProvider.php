@@ -58,10 +58,7 @@ class CoresProvider
 
     private function check_area_available($area): bool
     {
-        $ar = __SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__  . $this->_areaMapper->real_area(ucwords($area));
-//        $arr = __SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__  . ucwords($area);
-
-        return is_dir($ar);
+        return is_dir(__SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__  . $this->_areaMapper->real_area(ucwords($area)));
     }
 
     private function check__single_controller_available($controller): bool
