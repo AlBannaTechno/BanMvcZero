@@ -1,6 +1,9 @@
 <?php
 namespace Helpers\Core;
 
+use ReflectionClass;
+use ReflectionException as ReflectionExceptionAlias;
+
 function get_url_slugs() : array
 {
     // we configure it in .htaccess , so the rest of the request URL will save in url variable location
@@ -50,4 +53,32 @@ function get_url_query_params(){
     $params = get_url_params();
     unset($params[__DEFAULT_SERVER_URL_PARAM_NAME__]);
     return $params;
+}
+
+
+/**
+ * Since all php string to array or string matcher implementations use linear or binary search
+ * it will be not efficient to depend on it when resolving [area] name from the controller location
+ * since we know exactly the depth between two elements , so we will implement it
+ * @param string $controller_path
+ * @return string
+ */
+function get_area_from_controller_path(string $controller_path) : string {
+    try {
+        $rc = new ReflectionClass($controller_path);
+        $path = dirname($rc->getFileName(),2);
+        // note : I still confused about using negative indices in php string , due to php implementation
+        // means if i access string negative index many times , php will check count first
+        // so for multi access eg, our case, it's will be more efferent to get count once and then use it
+        // https://wiki.php.net/rfc/negative-index-support
+        // https://wiki.php.net/rfc/negative-string-offsets
+        $length = strlen($path);
+        for($c = $length -1 ; $c > -1 ; $c--){
+            if ($path[$c] === '\\'){
+                return substr($path, $c+1);
+            }
+        }
+    } catch (ReflectionExceptionAlias $e) {
+    }
+    return '';
 }
