@@ -105,4 +105,7 @@ function register_core_types(Container $container){
     $container->register_with_factory(PdoDatabase::class, static function ($container, $opt_params){
         return PdoDatabase::getInstance();
     });
+    // TODO implement provideWith
+    // TODO allow optional parameters to not passed in Container
+    $container->provide(AreaMapper::class, ['strictMode' => true], Container::REG_TYPE_SINGLETON);
 }
