@@ -17,6 +17,9 @@ use function Helpers\Layout\print_mvc_title;
     <link rel="stylesheet" href="<?php print_css(); ?>">
 </head>
 <body>
+<div>
+    <a href="<?php echo Payment::link('buy', '1/osama')?>">GoTo Buy</a>
+</div>
 <h1>Customer Area Layout</h1>
 <div>
     <?php
