@@ -16,18 +16,21 @@ class AreaCore{
     protected $currentMethod = __DEFAULT_AREA__CONTROLLER_CURRENT_METHOD_NAME__;
     protected $currentArea = ''; // can not use public as area name , reversed for apache
     protected $params = [];
-
     public function __construct(Container $container, AreaMapper $areaMapper)
     {
         $urlArray = get_url_slugs();
-
+        $area_from_link = false;
+        $area_provided = false;
         // Load Area
         if (isset($urlArray[0]) ) {
             $this->currentArea = $areaMapper->real_area(ucwords($urlArray[0]));
             unset($urlArray[0]);
+            $area_provided = true;
         }
         if (!$this->currentArea){
             $this->check_area_base_defaults();
+        }else{
+            $area_from_link = true;
         }
         $this->check_area_defaults();
 
@@ -50,6 +53,10 @@ class AreaCore{
 
         }
 
+        if (!$area_from_link && $area_provided ){
+            include_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_FALLBACK__DIR_PATH . '/' . __DEFAULT_FALLBACK__404_PAGE__;
+            return;
+        }
         require_once __SPECIFICATION_APP_LOCATION__ . __DEFAULT_AREAS_PATH__ .$this->currentArea.'/' . __DEFAULT_AREA__CONTROLLERS_PATH__ . $this->currentController . '.php';
         $this->currentController = $container->resolve($this->currentController, [
             'area' => $this->currentArea
