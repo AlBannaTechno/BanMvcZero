@@ -46,6 +46,14 @@ This is a Simple Porting for some of asp.net core features With MVC Design Parad
     * Notice 
         * complex url mapping `eg /Customers/{custooerID}/Payment/{prs}/buy/34?role=22&rec=PLV` not supported in `Zero`
             * required abstract layer around the project : `so we implement it on BanMvc project with annotations`
+        * All config files eg , `_defaults.php, _layout.php` are based on Most Nearest Match `MNM` looping behaviour
+            * so if our system start from areas => controllers => pages
+            and we we locate `customers` controller, the resolver will use `_defaults.php` from Customers Directory
+            instead of `_defaults.php` in Areas Directory, and the same for view 
+               * just remember the main `_layout.php` located at `views.dir`
+            Also you must know, due to `MNM` if config file removed from Areas/Controllers level, then the resolver
+            will use config files from Areas Level, if not exists, then from base site level `eg, views/_layout.php`
+            `So it is a reversed hierarchy system`
             
     
 * DI System : `The Implementation of IoC` , `core/Ioc/Container.php`
