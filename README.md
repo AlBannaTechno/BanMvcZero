@@ -4,7 +4,7 @@ PHP MVC Framework That Porting Some Of [C# Asp.net Core] Features, philosophies 
 ----------------------------------------------
 
 ### Hi , Please Notice : This Framework is just a small piece of [BanMvc](https://github.com/AlBannaTechno/PHP-BanMVC) framework `I will publish it soon` which will contains
-Most of Asp.net Core Features , by using Annotations instead of C# Attribute Syntax , Either BanMvc or BanMvcZero , has zero
+Most of Asp.net Core Features , by using Annotations instead of C# Attribute Syntax , Both BanMvc and BanMvcZero , Have zero
 Dependency `every thing built from the ground including annotation system`
 
 -----------------------------------
