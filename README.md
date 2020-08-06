@@ -76,7 +76,7 @@ This is a Simple Porting for some of asp.net core features With MVC Design Parad
         * Ability to use factory to resolve/create new instance at runtime
             * The main purpose of implementing this features to solve static singleton design paradigm problem
                 since it's considered as an anti pattern , so when using factory pattern around it you can easily
-                mocking it within testing buy changing the factory or provide it with pre complex test environment 
+                mocking it within testing by changing the factory or provide it with pre complex test environment 
                 configurations
         
         * Invoke Method of object
