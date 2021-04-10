@@ -124,7 +124,7 @@ This is a Simple Porting for some of asp.net core features With MVC Design Parad
             
 
 * DataBase Supporting
-    * The `Zero` version does not aims to support QRM Solutions So : there is only one wrapper class
+    * The `Zero` version does not aims to support ORM Solutions So : there is only one wrapper class
     around PDO of php to enable providing it into DI system of this project
     This class at `database/PdoDatabase.php` 
     
